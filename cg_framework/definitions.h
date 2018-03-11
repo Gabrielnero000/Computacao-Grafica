@@ -6,5 +6,16 @@
 
 unsigned char * FBptr;
 
+struct Pixel{
+	int x;
+	int y;
+	int R;
+	int G;
+	int B;
+	int A;
+};
+
+typedef struct Pixel pixel;
+
 #endif // _DEFINITIONS_H_
 
