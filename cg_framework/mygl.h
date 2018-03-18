@@ -14,31 +14,14 @@ void putPixel(Pixel pixel){
 
 void ColorInterpolate(Pixel pi, Pixel *p, Pixel pf){
 	int dx = pf.x - pi.x;
-	int dy = pf.y - pf.y;
-	if(dx < 0 || dy < 0){
-		ColorInterpolate(pf, p, pi);
-		return;
-	}
-	int colors[4];
-	int colors_aux[4];
-	colors[0] = pf.R - pi.R;
-	colors[1] = pf.G - pi.G;
-	colors[2] = pf.B - pi.B;
-	colors[3] = pf.A - pi.A;
-	int flag;
-	if(abs(dx) >= abs(dy)){
-		flag = p->x - pi.x;
-		for(int i = 0; i < 4; ++i)
-            		colors_aux[i] = colors[i]/dx;
-	}else{
-		flag = p->y - pi.y;
-		for(int i = 0; i < 4; ++i)
-            		colors_aux[i] = colors[i]/dy;
-	}
-	p->R = pi.R + (colors_aux[0] * flag);
-	p->G = pi.G + (colors_aux[1] * flag);
-	p->B = pi.B + (colors_aux[2] * flag);
-	p->A = pi.A + (colors_aux[3] * flag);
+	int dy = pf.y - pi.y;
+	int dx_aux = pf.x - p->x;
+	int dy_aux = pf.y - p->y;
+	double t =  sqrt(pow(dx_aux, 2) + pow(dy_aux, 2)) / sqrt(pow(dx, 2) + pow(dy, 2));
+	p->R = pf.R + (pi.R - pf.R) * t;
+	p->G = pf.G + (pi.G - pf.G) * t;
+	p->B = pf.B + (pi.B - pf.B) * t;
+	p->A = pf.A + (pi.A - pf.A) * t;
 }
 
 void DrawLineDown(Pixel pi, Pixel pf){
@@ -62,7 +45,7 @@ void DrawLineDown(Pixel pi, Pixel pf){
 			p.y = p.y + flag_y;
 		}
 		d += + 2 * dy;
-		ColorInterpolate(pi, p_ptr, pf);
+		ColorInterpolate(pi, p_ptr, pf);		
 	}
 }
 
@@ -88,6 +71,7 @@ void DrawLineUp(Pixel pi, Pixel pf){
 		}
 		d += 2 * dx;
 		ColorInterpolate(pi, p_ptr, pf);
+
 	}
 }
 
