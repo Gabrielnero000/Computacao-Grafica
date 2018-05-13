@@ -31,20 +31,20 @@ Pixel DrawLineDown(Pixel pi, Pixel pf){
 	int dx = pf.x - pi.x;
 	int dy = pf.y - pi.y;
 	int d = 2 * dy - dx;
-	
+
 	if(dy < 0){
 		flag_y = -1;
 		dy = -dy;
 	}
 
-	for(p.x; p.x <= pf.x; p.x+=1){
+	for(; p.x <= pf.x; p.x+=1){
 		putPixel(p);
 		if(d > 0){
-			d -= 2 * dx;	
-			p.y = p.y + flag_y;
+			d -= 2 * dx;
+			p.y += flag_y;
 		}
 		d += + 2 * dy;
-		ColorInterpolate(pi, &p, pf);		
+		ColorInterpolate(pi, &p, pf);
 	}
 	p.x--;
 	p.y--;
@@ -58,17 +58,17 @@ Pixel DrawLineUp(Pixel pi, Pixel pf){
 	int dx = pf.x - pi.x;
 	int dy = pf.y - pi.y;
 	int d = 2 * dx - dy;
-	
+
 	if(dx < 0){
 		flag_x = -1;
 		dx = -dx;
 	}
 
-	for(p.y; p.y <= pf.y; p.y+=1){
+	for(; p.y <= pf.y; p.y+=1){
 		putPixel(p);
 		if(d > 0){
-			d -= 2 * dy;	
-			p.x = p.x + flag_x;
+			d -= 2 * dy;
+			p.x +=flag_x;
 		}
 		d += 2 * dx;
 		ColorInterpolate(pi, &p, pf);
@@ -107,28 +107,28 @@ void SortByY(Pixel *p1, Pixel *p2, Pixel *p3){
 		p_aux1 = *p1;
 		if(p2->y <= p3->y){
 			p_aux2 = *p2;
-			p_aux3 = *p3;			
+			p_aux3 = *p3;
 		}else{
 			p_aux2 = *p3;
-			p_aux3 = *p2;	
-		}	
+			p_aux3 = *p2;
+		}
 	}else if(p2->y <= p1->y && p2->y <= p3->y){
 		p_aux1 = *p2;
 		if(p1->y <= p3->y){
 			p_aux2 = *p1;
-			p_aux3 = *p3;			
+			p_aux3 = *p3;
 		}else{
 			p_aux2 = *p3;
-			p_aux3 = *p1;	
-		}	
+			p_aux3 = *p1;
+		}
 	}else if(p3->y <= p2->y && p3->y <= p1->y){
 		p_aux1 = *p3;
 		if(p2->y <= p1->y){
 			p_aux2 = *p2;
-			p_aux3 = *p1;			
+			p_aux3 = *p1;
 		}else{
 			p_aux2 = *p1;
-			p_aux3 = *p2;	
+			p_aux3 = *p2;
 		}
 	}
 	*p1 = p_aux1;
@@ -150,13 +150,13 @@ void DrawFilledTriangleLower(Pixel v1, Pixel v2, Pixel v3){
 		ColorInterpolate(v2, &aux, v1);
 		DrawLine(v3, aux);
 	}
-	
+
 }
 
 void DrawFilledTriangle(Pixel v1, Pixel v2, Pixel v3){
 	SortByY(&v1, &v2, &v3);
 	if(v1.y == v2.y){
-		DrawFilledTriangleLower(v1, v2, v3);	
+		DrawFilledTriangleLower(v1, v2, v3);
 	}else if(v2.y == v3.y){
 		DrawFilledTriangleUpper(v1, v2, v3);
 	}else{
@@ -169,4 +169,3 @@ void DrawFilledTriangle(Pixel v1, Pixel v2, Pixel v3){
 	}
 }
 #endif // _MYGL_H_
-

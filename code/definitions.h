@@ -16,4 +16,3 @@ typedef struct pixel{
 } Pixel;
 
 #endif // _DEFINITIONS_H_
-
