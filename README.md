@@ -9,24 +9,7 @@
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__left">
-    <div class="stackedit__toc">
-      
-<ul>
-<li>
-<ul>
-<li><a href="#bibliotecas-utilizadas">Bibliotecas utilizadas:</a></li>
-<li><a href="#parte-1-principios-básicos-e-rasteirização-coming-soon">Parte 1: Principios básicos e rasteirização (COMING SOON)</a></li>
-<li><a href="#parte-2-pipeline-gráfico-calma-ele-não-morde">Parte 2: Pipeline Gráfico: calma, ele não morde</a></li>
-</ul>
-</li>
-</ul>
-
-    </div>
-  </div>
-  <div class="stackedit__right">
-    <div class="stackedit__html">
-      <h1 align="center">Introdução à Computação Gráfica</h1>
+  <div class="stackedit__html"><h1 align="center">Introdução à Computação Gráfica</h1>
 <p align="center">
   <img src="https://raw.githubusercontent.com/Gabrielnero000/Computacao-Grafica/master/assets/kratossmile.jpg">
   <sub>God of War - 2018
@@ -114,9 +97,7 @@
 <p align="center">
   <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/shear.png?raw=true">
   </p>
-
-    </div>
-  </div>
+</div>
 </body>
 
 </html>
