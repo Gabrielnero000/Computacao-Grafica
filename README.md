@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ﻿<h1 align="center">Introdução à Computação Gráfica</h1>
-=======
-<h1 align="center">Introdução à Computação Gráfica</h1>
->>>>>>> b4ecb0179d0735dee605f6c33bd3011add4a4495
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Gabrielnero000/Computacao-Grafica/master/assets/kratossmile.jpg">
@@ -89,41 +85,18 @@ Não é difícil visualizar que estamos lidando com processos relacionados à **
 ### Transformações básicas
 Como dito anteriormente, no espaço do objeto diversas transformações podem ser aplicadas. Essas transformações podem ser de três categorias: linear, afim ou projetiva. Vamos preferir trabalhar apenas com transformações lineares, pois elas sempre podem ser compactadas em matrizes.
 
-<<<<<<< HEAD
- Se <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/62637c2b72fa8c4dca0837cdf4b3b12d.svg?invert_in_darkmode" align=middle width=112.041105pt height=32.25585pt/> é o vetor que denota um vértice pertencente ao objeto, as principais transformações podem ser denotadas como:
-=======
- Se $\vec{X} = \left[x, y, z, 1 \right]^T$ é o vetor que denota um vértice pertencente ao objeto, as principais transformações podem ser denotadas como:
->>>>>>> b4ecb0179d0735dee605f6c33bd3011add4a4495
+ Se <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/62637c2b72fa8c4dca0837cdf4b3b12d.svg?invert_in_darkmode" align=middle width=112.041105pt height=32.25585pt/> é o vetor que denota um vértice pertencente ao objeto, as principais transformações podem ser denotadas como:
 * #### Escalonamento
 
 <p align="center">
   <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/scale.png?raw=true">
 </p>
 
-<<<<<<< HEAD
-A transformação de escalonamento afeta as dimensões do objedo, de forma que cada **coordenada** do vetor <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/1e6682a7e06941e96dc9ec2c99d32d8e.svg?invert_in_darkmode" align=middle width=14.90874pt height=31.79913pt/> é multiplicada por **escalares** <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/99036d87bf2572fcf6e37a0f99818e2e.svg?invert_in_darkmode" align=middle width=15.15987pt height=14.15535pt/>, <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/e3bcffc05e1413cfdca192e030566bba.svg?invert_in_darkmode" align=middle width=14.785155pt height=14.15535pt/> e <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/18dc843d3217f94cff62acc1f661e343.svg?invert_in_darkmode" align=middle width=14.45796pt height=14.15535pt/>, respectivamente. Para  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/8da4ccd50620c93910995bcde0c222ad.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, o objeto aumenta de tamanho na direção  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>.  Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/a405f1e053899e4de72b7283664392df.svg?invert_in_darkmode" align=middle width=76.41381pt height=21.18732pt/>, o objeto diminui de tamanho na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/869402577740cb08a5364b26905cd7cc.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, ocorre um espelhamento junto com o escalonamento do objeto na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. A escala pode ser **isotropica**, onde todos os escalares são iguais, ou **anisiotrópica**, onde algum escalar é diferente dos demais.
+A transformação de escalonamento afeta as dimensões do objedo, de forma que cada **coordenada** do vetor <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/1e6682a7e06941e96dc9ec2c99d32d8e.svg?invert_in_darkmode" align=middle width=14.90874pt height=31.79913pt/> é multiplicada por **escalares** <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/99036d87bf2572fcf6e37a0f99818e2e.svg?invert_in_darkmode" align=middle width=15.15987pt height=14.15535pt/>, <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/e3bcffc05e1413cfdca192e030566bba.svg?invert_in_darkmode" align=middle width=14.785155pt height=14.15535pt/> e <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/18dc843d3217f94cff62acc1f661e343.svg?invert_in_darkmode" align=middle width=14.45796pt height=14.15535pt/>, respectivamente. Para  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/8da4ccd50620c93910995bcde0c222ad.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, o objeto aumenta de tamanho na direção  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>.  Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/a405f1e053899e4de72b7283664392df.svg?invert_in_darkmode" align=middle width=76.41381pt height=21.18732pt/>, o objeto diminui de tamanho na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/869402577740cb08a5364b26905cd7cc.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, ocorre um espelhamento junto com o escalonamento do objeto na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. A escala pode ser **isotropica**, onde todos os escalares são iguais, ou **anisiotrópica**, onde algum escalar é diferente dos demais.
 
-<p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/c2e1bd9ec4a93d3280b473821cfcf3ab.svg?invert_in_darkmode" align=middle width=336.138pt height=89.783265pt/></p>
-=======
-A transformação de escalonamento afeta as dimensões do objedo, de forma que cada **coordenada** do vetor $\vec{X}$ é multiplicada por **escalares** $s_x$, $s_y$ e $s_z$, respectivamente. Para  $s_\gamma > 1$, o objeto aumenta de tamanho na direção  $\gamma$.  Para $1 > s_\gamma > 0$, o objeto diminui de tamanho na direção $\gamma$. Para $s_\gamma < 0$, ocorre um espelhamento junto com o escalonamento do objeto na direção $\gamma$. A escala pode ser **isotropica**, onde todos os escalares são iguais, ou **anisiotrópica**, onde algum escalar é diferente dos demais.
-
-$$\begin{matrix} x'=x.s_x \\[0.3em] y'=y.s_y \\[0.3em] z'=z.s_z \\[0.3em] 1 = 1
-\end{matrix} \implies
-\begin{bmatrix} x'\\[0.3em] y' \\[0.3em] z' \\[0.3em] 1\end{bmatrix}=
-\begin{bmatrix} s_x  & 0 & 0  & 0\\[0.3em]
-							0 & s_y & 0  & 0\\[0.3em]
-							0 & 0 & s_z  & 0\\[0.3em]
-							0 & 0 & 0  & 1\end{bmatrix}
-.\begin{bmatrix} x\\[0.3em] y\\[0.3em] z\\[0.3em] 1\end{bmatrix}$$
->>>>>>> b4ecb0179d0735dee605f6c33bd3011add4a4495
+<p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/None/svgs/c2e1bd9ec4a93d3280b473821cfcf3ab.svg?invert_in_darkmode" align=middle width=336.138pt height=89.783265pt/></p>
 
 * #### Cisalhamento (Shear)
 <p align="center">
   <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/shear.png?raw=true">
   </p>
-<<<<<<< HEAD
-=======
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc3OTAyNDY3NCwtNTczMTgwMTUxXX0=
--->
->>>>>>> b4ecb0179d0735dee605f6c33bd3011add4a4495
