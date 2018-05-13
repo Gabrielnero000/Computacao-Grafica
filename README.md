@@ -94,14 +94,13 @@ Como dito anteriormente, no espaço do objeto diversas transformações podem se
 
 A transformação de escalonamento afeta as dimensões do objedo, de forma que cada **coordenada** do vetor $\vec{X}$ é multiplicada por **escalares** $s_x$, $s_y$ e $s_z$, respectivamente. Para  $s_\gamma > 1$, o objeto aumenta de tamanho na direção  $\gamma$.  Para $1 > s_\gamma > 0$, o objeto diminui de tamanho na direção $\gamma$. Para $s_\gamma < 0$, ocorre um espelhamento junto com o escalonamento do objeto na direção $\gamma$. A escala pode ser **isotropica**, onde todos os escalares são iguais, ou **anisiotrópica**, onde algum escalar é diferente dos demais.
 
-<p align="center">
-  <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/scale_matriz.png?raw=true">
-</p>
+
+https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/scale_matriz.png?raw=true
 
 * #### Cisalhamento (Shear)
 <p align="center">
   <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/shear.png?raw=true">
   </p>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU3MzE4MDE1MV19
+eyJoaXN0b3J5IjpbLTE2MzMyMjA2OTMsLTU3MzE4MDE1MV19
 -->
