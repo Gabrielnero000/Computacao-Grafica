@@ -100,3 +100,6 @@ A transformação de escalonamento afeta as dimensões do objedo, de forma que c
 <p align="center">
   <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/shear.png?raw=true">
   </p>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTU2NDg5MzQ2MV19
+-->
