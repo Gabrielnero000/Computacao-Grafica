@@ -1,3 +1,4 @@
+
 ﻿<h1 align="center">Introdução à Computação Gráfica</h1>
 
 <p align="center">
@@ -122,11 +123,11 @@ Como explicado anteriormente, o objeto inicia com seu centro na origem dentro de
     
     // Cria uma matriz identidade 4x4
     mat4 identity_Matrix = mat4(vec4(1, 0, 0, 0),
-								vec4(0, 1, 0, 0),
-								vec4(0, 0, 1, 0),
-								vec4(0, 0, 0, 1));
+				vec4(0, 1, 0, 0),
+				vec4(0, 0, 1, 0),
+				vec4(0, 0, 0, 1));
 								
-	  // Cria uma matriz de rotação que rotaciona o objeto em torno do eixo Y, isso
+    // Cria uma matriz de rotação que rotaciona o objeto em torno do eixo Y, isso
     // é feito para demonstrar a figura mudando dinâmicamente a cada frame numa rotação
     // exibindo, assim, ela em diversos ângulos
     mat4 rotate_Matrix = mat4(vec4(cos(rotateY), 0, -sin(rotateY), 0),
@@ -136,3 +137,63 @@ Como explicado anteriormente, o objeto inicia com seu centro na origem dentro de
 
     // Define a próxima rotação como 0.01º à mais do que a anterior
     rotateY += 0.01;
+
+### Matriz View
+
+Ao estar no Espaço do Universo, o próximo passo é definir uma câmera a qual irá capturar a cena aonde estão os objetos. Para isso é necessário escolher primeiramente os eixos da mesma através das informações que são necessárias para gerá-la, isto é, o ponto relativo à sua **posição** (position), o ponto para onde ela está **olhando** (look at), a partir desses dois pontos gerar um **vetor de direção** (direction) e, por fim, possuir o **vetor UP**, um vetor que representa o que seria "olhar para cima" no Espaço do Universo, que , nesse caso, é tomado como sendo igual ao vetor unitário que representa o eixo y do Universo.
+
+$$\begin{matrix} Position: p = (p_x, p_y, p_z)\\[0.3em] LookAt: l = (l_x,l_y,l_z) \\[0.3em] VectorUP: u = (u_x,u_y,u_z)\\[0.3em] Direction: d=(l_x-p_x,l_y-p_y,l_z-p_z)
+	\end{matrix}$$
+	
+O primeiro eixo do sistema de coordenadas da câmera a ser buscado é o **eixo z**, já que para gerá-lo basta encontrar o vetor que vai do ponto da posição da câmera até aquele que ela está olhando (resumidamente, o direction) e, em seguida, obter o unitário contrário a esse vetor (a câmera sempre aponta para o lado contrário ao seu eixo z fixada na origem de seu sistema de coordenadas). Em outras palavras:
+
+$$\hat{Z_c} = - \frac{d}{|d|} = (z_{cx},z_{cy},z_{cz})$$
+Em seguida, é possível encontrar o **eixo x** ao fazer o produto vetorial entre o $u$ e o $\hat{z_c}$ para obter o vetor perpendicular a esses dois e, após isso, dividir ele pelo módulo de si mesmo para obter seu unitário:
+$$\hat{X_c} = \frac{u \times \hat{z_c} }{|u \times \hat{z_c} | } = (x_{cx},x_{cy},x_{cz})$$
+
+Por fim, encontra-se o **eixo y** seguindo o mesmo procedimento usado acima, porém fazendo desta vez um produto vetorial entre $\hat{z_c}$ e $\hat{x_c}$:
+
+$$\hat{Y_c} = \frac{\hat{z_c} \times \hat{x_c} }{ |\hat{z_c} \times \hat{x_c}| } = (y_{cx},y_{cy},y_{cz})$$
+
+Após tal procedimento é preciso construir as matrizes que formarão a View. Sendo elas uma **Matriz B** que serve para representar os pontos do sistema de coordenadas do Universo no novo sistema relativo ao **Espaço da Câmera** e uma **Matriz T** usada para transladar todos os vértices em relação ao ponto position com objetivo de posicionar a câmera na origem.
+
+$$B^T =
+\begin{bmatrix}   x_{cx}  & x_{cy} & x_{cz}  & 0\\[0.3em]
+							y_{cx}  & y_{cy} & y_{cz}  & 0\\[0.3em]
+							z_{cx}  & z_{cy} & z_{cz}  & 0\\[0.3em]
+							0 & 0 & 0  & 1\end{bmatrix}
+\text{ e }
+T =
+\begin{bmatrix}   1 & 0 & 0 & -p_x\\[0.3em]
+							0 & 1 & 0 & -p_y\\[0.3em]
+							0 & 0 & 1 & -p_z\\[0.3em]
+							0 & 0 & 0  & 1\end{bmatrix}$$
+
+Para combinar tais matrizes e gerar a **Matriz View** é preciso apenas multiplicar uma pela outra.
+
+$$M_{view} = B^T \times T$$
+
+Programacionalmente isso pode ser resumido em algumas poucas linhas ao usar a biblioteca padrão vector de C++ e ao importar a glm para o uso de suas funções.
+
+
+    // A função normalize transforma vetores em vetores unitários
+    // A função cross retorna o produto vetorial entre dois vetores
+    vec3 camera_z = -normalize(camera_target - camera_pos);
+    vec3 camera_x = normalize(cross(camera_up, camera_z));
+    vec3 camera_y = normalize(cross(camera_z, camera_x));
+
+    mat4 B = mat4(vec4(camera_x, 0),
+                  vec4(camera_y, 0),
+                  vec4(camera_z, 0),
+                  vec4(0, 0, 0, 1));
+
+    mat4 T = mat4(vec4(1, 0, 0, -camera_pos.x),
+                  vec4(0, 1, 0, -camera_pos.y),
+                  vec4(0, 0, 1, -camera_pos.z),
+                  vec4(0, 0, 0, 1));
+                  
+    mat4 view_Matrix = B * T;
+                  
+
+
+
