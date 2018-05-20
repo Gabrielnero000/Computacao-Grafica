@@ -1,4 +1,4 @@
-﻿
+
 ﻿<h1 align="center">Introdução à Computação Gráfica</h1>
 
 <p align="center">
@@ -196,7 +196,9 @@ Programacionalmente isso pode ser resumido em algumas poucas linhas ao usar a bi
                   
 ### Matriz Projection
 A próxima matriz é aquela que faz a transição do **Espaço de Câmera** para o **Espaço de Recorte** e, além disso, prepara os vértices para que quando forem divididos por um determinado valor gerem uma distorção nos objetos para conferir uma sensação de perspectiva. Ela é obtida através de uma relação geomêtrica entre a distância de um ponto c (posição da câmera ou centro focal) até um plano conhecido como near plane e as coordenadas x, y e z dos vértices que estarão além desse plano.
-(Imagem)
+
+### ***(Imagem)***
+
 Duas matrizes são extraídas dessa relação: a **Matriz T** que faz uma translação em z para levar o centro focal para a origem e a **Matriz P** que efetivamente aplica a projeção.
 
 $$T =
@@ -224,10 +226,42 @@ $$M_{projection} = P \times T =
 
     // Cria a matriz projection baseada no d para gerar uma distorção
     // projetiva
-    mat4 projection_Matrix = mat4(vec4(1, 0,   0, 0),
-                                  vec4(0, 1,   0, 0),
-                                  vec4(0, 0,   1, d),
-                                  vec4(0, 0,-1/d, 0));
+    mat4 projection_Matrix = mat4(vec4(1, 0, 0,   0),
+                                  vec4(0, 1, 0,   0),
+                                  vec4(0, 0, 1,-1/d),
+                                  vec4(0, 0, d,   0));
 ### Transição para o Espaço Canônico
+Dentre todas as transições entre espaços, a do **Espaço de Recorte** para o **Espaço Canônico** é a única que não pode ser expressa através de uma matriz. Para que ela ocorra é necessário dividir o vetor dos vértices pela coordenada homogênea: 
+$$w = \frac{1-z}{d}$$
 
+E, assim, obter todas as coordenadas divididas por $w$ e a coordenada homogênea retornando a ter o valor 1.
+
+    // Aplica a divisão que leva do espaço de recorte para o canônico
+    for(unsigned int i = 0; i < model.size(); i++)
+    {
+        model[i] = model[i] / model[i].w;
+    }
+
+### Matriz View Port
+No final do Pipeline é preciso fazer a transição para o **Espaço da Tela** com objetivo de, assim, a cena ser efetivamente exibida. Para isso, é preciso apenas aplicar algumas transformações básicas: primeiramente uma escala para inverter a imagem no eixo y (pois o ponto (0,0) da tela encontra-se no canto superior esquerdo, diferente do inferior esquerdo que estávamos tomando até agora) e, em seguida, é executada uma translação em conjunto com uma outra escala para mudar todos vértices do intervalo de [ (-1,-1) , (1, 1) ] para [ (0, 0) , (w-1, h-1) ] sendo w a largura da tela e h sua altura.  
+$$S_2 =
+\begin{bmatrix}   \frac{w}{2} & 0 & 0 & 0\\[0.3em]
+								0 & \frac{h}{2} & 0 & 0\\[0.3em]
+								0 & 0 & 1 & 0\\[0.3em]
+								0 & 0 & 0 & 1\end{bmatrix}
+\text{ e } \text{ }
+T_1 =
+\begin{bmatrix}   1 & 0 & 0 & \frac{w-1}{2}\\[0.3em]
+								0 & 1 & 0 & \frac{h-1}{2}\\[0.3em]
+								0 & 0 & 1 & 0\\[0.3em]
+								0 & 0 & 0 & 1\end{bmatrix}
+\text{ e } \text{ }
+S_1 =
+\begin{bmatrix}    1 &  0 & 0 & 0\\[0.3em]
+								0 & -1 & 0 & 0\\[0.3em]
+								0 &  0 & 1 & 0\\[0.3em]
+								0 &  0 & 0 & 1\end{bmatrix}$$
+
+Aonde a **Matriz View Port** é a junção dessas três através de uma multiplicação entre elas, em outras palavras:
+$$ M_{\text{port view}} = S_2 \times T_1 \times S_1$$
 
