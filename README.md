@@ -1,4 +1,4 @@
-
+﻿
 ﻿<h1 align="center">Introdução à Computação Gráfica</h1>
 
 <p align="center">
@@ -162,7 +162,7 @@ $$B^T =
 							y_{cx}  & y_{cy} & y_{cz}  & 0\\[0.3em]
 							z_{cx}  & z_{cy} & z_{cz}  & 0\\[0.3em]
 							0 & 0 & 0  & 1\end{bmatrix}
-\text{ e }
+\text{ e } \text{ }
 T =
 \begin{bmatrix}   1 & 0 & 0 & -p_x\\[0.3em]
 							0 & 1 & 0 & -p_y\\[0.3em]
@@ -194,6 +194,40 @@ Programacionalmente isso pode ser resumido em algumas poucas linhas ao usar a bi
                   
     mat4 view_Matrix = B * T;
                   
+### Matriz Projection
+A próxima matriz é aquela que faz a transição do **Espaço de Câmera** para o **Espaço de Recorte** e, além disso, prepara os vértices para que quando forem divididos por um determinado valor gerem uma distorção nos objetos para conferir uma sensação de perspectiva. Ela é obtida através de uma relação geomêtrica entre a distância de um ponto c (posição da câmera ou centro focal) até um plano conhecido como near plane e as coordenadas x, y e z dos vértices que estarão além desse plano.
+(Imagem)
+Duas matrizes são extraídas dessa relação: a **Matriz T** que faz uma translação em z para levar o centro focal para a origem e a **Matriz P** que efetivamente aplica a projeção.
 
+$$T =
+\begin{bmatrix}   1 & 0 & 0 & 0\\[0.3em]
+								0 & 1 & 0 & 0\\[0.3em]
+								0 & 0 & 1 & d\\[0.3em]
+								0 & 0 & 0 & 1\end{bmatrix}
+\text{ e } \text{ }
+P =
+\begin{bmatrix}   1 & 0 & 0 & 0\\[0.3em]
+								0 & 1 & 0 & 0\\[0.3em]
+								0 & 0 & 1 & 0\\[0.3em]
+								0 & 0 & -\frac{1}{d} & 1\end{bmatrix}$$
+								
+A junção dessas duas matrizes através de uma multiplicação é o que forma a **Matriz Projection**.
+$$M_{projection} = P \times T = 
+\begin{bmatrix}   1 & 0 & 0 & 0\\[0.3em]
+								0 & 1 & 0 & 0\\[0.3em]
+								0 & 0 & 1 & d\\[0.3em]
+								0 & 0 & -\frac{1}{d} & 0\end{bmatrix}$$
+
+    // Cria um float d que representa a distância do centro focal
+    // até o near plane
+    float d = 0.5f;
+
+    // Cria a matriz projection baseada no d para gerar uma distorção
+    // projetiva
+    mat4 projection_Matrix = mat4(vec4(1, 0,   0, 0),
+                                  vec4(0, 1,   0, 0),
+                                  vec4(0, 0,   1, d),
+                                  vec4(0, 0,-1/d, 0));
+### Transição para o Espaço Canônico
 
 
