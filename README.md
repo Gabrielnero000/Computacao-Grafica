@@ -85,21 +85,54 @@ Não é difícil visualizar que estamos lidando com processos relacionados à **
 ### Transformações básicas
 Como dito anteriormente, no espaço do objeto diversas transformações podem ser aplicadas. Essas transformações podem ser de três categorias: linear, afim ou projetiva. Vamos preferir trabalhar apenas com transformações lineares, pois elas sempre podem ser compactadas em matrizes.
 
- Se <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/62637c2b72fa8c4dca0837cdf4b3b12d.svg?invert_in_darkmode" align=middle width=112.041105pt height=32.25585pt/> é o vetor que denota um vértice pertencente ao objeto, as principais transformações podem ser denotadas como:
+ Se $\vec{X} = \left[x, y, z, 1 \right]^T$ é o vetor que denota um vértice pertencente ao objeto, as principais transformações podem ser denotadas como:
 * #### Escalonamento
 
 <p align="center">
   <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/scale.png?raw=true">
 </p>
 
-A transformação de escalonamento afeta as dimensões do objedo, de forma que cada **coordenada** do vetor <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/1e6682a7e06941e96dc9ec2c99d32d8e.svg?invert_in_darkmode" align=middle width=14.90874pt height=31.79913pt/> é multiplicada por **escalares** <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/99036d87bf2572fcf6e37a0f99818e2e.svg?invert_in_darkmode" align=middle width=15.15987pt height=14.15535pt/>, <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/e3bcffc05e1413cfdca192e030566bba.svg?invert_in_darkmode" align=middle width=14.785155pt height=14.15535pt/> e <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/18dc843d3217f94cff62acc1f661e343.svg?invert_in_darkmode" align=middle width=14.45796pt height=14.15535pt/>, respectivamente. Para  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/8da4ccd50620c93910995bcde0c222ad.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, o objeto aumenta de tamanho na direção  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>.  Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/a405f1e053899e4de72b7283664392df.svg?invert_in_darkmode" align=middle width=76.41381pt height=21.18732pt/>, o objeto diminui de tamanho na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/869402577740cb08a5364b26905cd7cc.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, ocorre um espelhamento junto com o escalonamento do objeto na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. A escala pode ser **isotropica**, onde todos os escalares são iguais, ou **anisiotrópica**, onde algum escalar é diferente dos demais.
+A transformação de escalonamento afeta as dimensões do objedo, de forma que cada **coordenada** do vetor $\vec{X}$ é multiplicada por **escalares** $s_x$, $s_y$ e $s_z$, respectivamente. Para  $s_\gamma > 1$, o objeto aumenta de tamanho na direção  $\gamma$.  Para $1 > s_\gamma > 0$, o objeto diminui de tamanho na direção $\gamma$. Para $s_\gamma < 0$, ocorre um espelhamento junto com o escalonamento do objeto na direção $\gamma$. A escala pode ser **isotropica**, onde todos os escalares são iguais, ou **anisiotrópica**, onde algum escalar é diferente dos demais.
 
-<p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/c2e1bd9ec4a93d3280b473821cfcf3ab.svg?invert_in_darkmode" align=middle width=336.138pt height=89.783265pt/></p>
+$$\begin{matrix} x'=x.s_x \\[0.3em] y'=y.s_y \\[0.3em] z'=z.s_z \\[0.3em] 1 = 1
+\end{matrix} \implies
+\begin{bmatrix} x'\\[0.3em] y' \\[0.3em] z' \\[0.3em] 1\end{bmatrix}=
+\begin{bmatrix} s_x  & 0 & 0  & 0\\[0.3em]
+							0 & s_y & 0  & 0\\[0.3em]
+							0 & 0 & s_z  & 0\\[0.3em]
+							0 & 0 & 0  & 1\end{bmatrix}
+.\begin{bmatrix} x\\[0.3em] y\\[0.3em] z\\[0.3em] 1\end{bmatrix}$$
 
 * #### Cisalhamento (Shear)
 <p align="center">
   <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/shear.png?raw=true">
   </p>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2NDg5MzQ2MV19
--->
+  
+## Parte 3: Implementação do Pipeline
+
+Após a introdução teórica acerca do **Pipeline** e da **Rasterização de Primitivas**, chegou o momento de ser colocado em prática os conceitos aprendidos. Para isso, foi usado da linguagem C++ e das bibliotecas indicadas no inicio desse texto.
+
+### Importação do Objeto
+
+O modelo usado para demonstrar os resultados da implementação foi a Susy, um dos objetos padrões que podem ser gerados no Blender, através do formato .obj e sua importação foi feita utilizando a biblioteca OBJ-Loader.
+
+### Matriz Model
+
+Como explicado anteriormente, o objeto inicia com seu centro na origem dentro de um espaço conhecido como **Espaço do Objeto**. Para que ele seja posicionado em cena junto com os demais objetos é necessário executar mudanças em sua posição, tamanho e até em sua rotação, sendo todas essas mudanças condensadas na **Matriz Model**, uma matriz cuja qual qualquer vértice (com suas coordenadas representadas através de um vetor) precisa ser multiplicado para que possa fazer a transição para o **Espaço do Universo**. 
+    
+    // Cria uma matriz identidade 4x4
+    mat4 identity_Matrix = mat4(vec4(1, 0, 0, 0),
+								vec4(0, 1, 0, 0),
+								vec4(0, 0, 1, 0),
+								vec4(0, 0, 0, 1));
+								
+	  // Cria uma matriz de rotação que rotaciona o objeto em torno do eixo Y, isso
+    // é feito para demonstrar a figura mudando dinâmicamente a cada frame numa rotação
+    // exibindo, assim, ela em diversos ângulos
+    mat4 rotate_Matrix = mat4(vec4(cos(rotateY), 0, -sin(rotateY), 0),
+                              vec4(0, 1, 0, 0),
+                              vec4(sin(rotateY), 0, cos(rotateY), 0),
+                              vec4(0, 0, 0, 1));
+
+    // Define a próxima rotação como 0.01º à mais do que a anterior
+    rotateY += 0.01;
