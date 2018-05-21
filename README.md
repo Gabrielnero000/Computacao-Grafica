@@ -117,6 +117,7 @@ A rotação consiste em girar o objeto em torno de algum dos eixos. Se valendo d
 <p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/87c349d375b8ea5f94d8f21f96c946c7.svg?invert_in_darkmode" align=middle width=515.1894pt height=89.651265pt/></p>
 
 <p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/6a3fea70fd38e1acd1dd4ebc5748f327.svg?invert_in_darkmode" align=middle width=502.96785pt height=89.651265pt/></p>
+
 * #### Cisalhamento (Shear)
 
 <p align="center">
