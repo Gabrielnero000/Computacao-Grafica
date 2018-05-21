@@ -98,7 +98,7 @@ Como dito anteriormente, no espaço do objeto diversas transformações podem se
  
 * #### Escalonamento
 <p align="center">
-  <img src="placeholder" width="1000" height="500">
+  <img src="https://raw.githubusercontent.com/Gabrielnero000/Computacao-Grafica/master/assets/scale.jpeg" width="1000" height="500">
 </p>
 
 A transformação de escalonamento afeta as dimensões do objedo, de forma que cada **coordenada** do vetor <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/1e6682a7e06941e96dc9ec2c99d32d8e.svg?invert_in_darkmode" align=middle width=14.90874pt height=31.79913pt/> é multiplicada por **escalares** <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/99036d87bf2572fcf6e37a0f99818e2e.svg?invert_in_darkmode" align=middle width=15.15987pt height=14.15535pt/>, <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/e3bcffc05e1413cfdca192e030566bba.svg?invert_in_darkmode" align=middle width=14.785155pt height=14.15535pt/> e <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/18dc843d3217f94cff62acc1f661e343.svg?invert_in_darkmode" align=middle width=14.45796pt height=14.15535pt/>, respectivamente. Para  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/8da4ccd50620c93910995bcde0c222ad.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, o objeto aumenta de tamanho na direção  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>.  Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/a405f1e053899e4de72b7283664392df.svg?invert_in_darkmode" align=middle width=76.41381pt height=21.18732pt/>, o objeto diminui de tamanho na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. Para <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/869402577740cb08a5364b26905cd7cc.svg?invert_in_darkmode" align=middle width=46.277055pt height=21.18732pt/>, ocorre um espelhamento junto com o escalonamento do objeto na direção <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/11c596de17c342edeed29f489aa4b274.svg?invert_in_darkmode" align=middle width=9.423975pt height=14.15535pt/>. A escala pode ser **isotropica**, onde todos os escalares são iguais, ou **anisiotrópica**, onde algum escalar é diferente dos demais.
@@ -108,7 +108,7 @@ A transformação de escalonamento afeta as dimensões do objedo, de forma que c
 * #### Rotação
 
 <p align="center">
-  <img src="placeholder" width="1000" height="500">
+  <img src="https://raw.githubusercontent.com/Gabrielnero000/Computacao-Grafica/master/assets/rotation.jpeg" width="1000" height="500">
 </p>
 
 A rotação consiste em girar o objeto em torno de algum dos eixos. Se valendo de principios trigonométricos, podemos escrever todas as coordenadas como função do ângulo <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/27e556cf3caa0673ac49a8f0de3c73ca.svg?invert_in_darkmode" align=middle width=8.1430305pt height=22.74591pt/> que desejamos rotacionar. As rotações em torno dos eixos <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.359955pt height=14.10255pt/>, <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode" align=middle width=8.61696pt height=14.10255pt/>, e  <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/f93ce33e511096ed626b4719d50f17d2.svg?invert_in_darkmode" align=middle width=8.33646pt height=14.10255pt/> podem ser representadas, respectivamente, pelas matrizes:
@@ -120,7 +120,7 @@ A rotação consiste em girar o objeto em torno de algum dos eixos. Se valendo d
 * #### Cisalhamento (Shear)
 
 <p align="center">
-  <img src="placeholder" width="1000" height="500">
+  <img src="https://raw.githubusercontent.com/Gabrielnero000/Computacao-Grafica/master/assets/shear.jpeg" width="1000" height="500">
 </p>
 
 O cisalhamento (conhecido por **shear**) consiste em gerar uma distorção nos vértices de maneira uniforme por meio de uma incrementação, de forma que a área (ou volume, se em 3D) do objeto não é alterada. É uma transformação incomumente utilizada explicitamente, porém mais a frente veremos que ela é extremamente útil.
@@ -200,7 +200,7 @@ mat4 view_Matrix = B * T;
 A próxima matriz é aquela que faz a transição do **Espaço de Câmera** para o **Espaço de Recorte** e, além disso, prepara os vértices para que quando forem divididos por um determinado valor gerem uma distorção nos objetos para conferir uma sensação de perspectiva. Ela é obtida através de uma relação geomêtrica entre a distância de um ponto c (posição da câmera ou centro focal) até um plano conhecido como near plane e as coordenadas x, y e z dos vértices que estarão além desse plano.
 
 <p align="center">
-  <img src="placeholder" width="1000" height="500">
+  <img src="https://raw.githubusercontent.com/Gabrielnero000/Computacao-Grafica/master/assets/perspective.jpeg" width="1000" height="500">
 </p>
 
 Duas matrizes são extraídas dessa relação: a **Matriz T** que faz uma translação em z para levar o centro focal para a origem e a **Matriz P** que efetivamente aplica a projeção.
