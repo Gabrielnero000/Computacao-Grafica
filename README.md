@@ -160,7 +160,7 @@ Ao estar no Espaço do Universo, o próximo passo é definir uma câmera a qual 
 O primeiro eixo do sistema de coordenadas da câmera a ser buscado é o **eixo z**, já que para gerá-lo basta encontrar o vetor que vai do ponto da posição da câmera até aquele que ela está olhando (resumidamente, o direction) e, em seguida, obter o unitário contrário a esse vetor (a câmera sempre aponta para o lado contrário ao seu eixo z fixada na origem de seu sistema de coordenadas). Em outras palavras:
 
 <p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/04c1c5fec173e8bd5310c77309dfcc7a.svg?invert_in_darkmode" align=middle width=187.5687pt height=37.863705pt/></p>
-Em seguida, é possível encontrar o **eixo x** ao fazer o produto vetorial entre o <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/6dbb78540bd76da3f1625782d42d6d16.svg?invert_in_darkmode" align=middle width=9.375135pt height=14.10255pt/> e o <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/ae91a0256427659f4d318d44a00d5b71.svg?invert_in_darkmode" align=middle width=13.468785pt height=22.74591pt/> para obter o vetor perpendicular a esses dois e, após isso, dividir ele pelo módulo de si mesmo para obter seu unitário:
+Em seguida, é possível encontrar o **eixo x** ao fazer o produto vetorial entre o <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/6dbb78540bd76da3f1625782d42d6d16.svg?invert_in_darkmode" align=middle width=9.375135pt height=14.10255pt/> e o <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/ae91a0256427659f4d318d44a00d5b71.svg?invert_in_darkmode" align=middle width=13.468785pt height=22.74591pt/> para obter o vetor perpendicular a esses dois e, após isso, dividir ele pelo módulo de si mesmo para obter o seu unitário:
 <p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/1ac17de3ade939b00b3083f40ab32dce.svg?invert_in_darkmode" align=middle width=217.74555pt height=37.863705pt/></p>
 
 Por fim, encontra-se o **eixo y** seguindo o mesmo procedimento usado acima, porém fazendo desta vez um produto vetorial entre <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/ae91a0256427659f4d318d44a00d5b71.svg?invert_in_darkmode" align=middle width=13.468785pt height=22.74591pt/> e <img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/0c7171938924e0be780ce5e79585aab5.svg?invert_in_darkmode" align=middle width=15.21267pt height=22.74591pt/>:
@@ -243,6 +243,25 @@ No final do Pipeline é preciso fazer a transição para o **Espaço da Tela** c
 
 Aonde a **Matriz View Port** é a junção dessas três através de uma multiplicação entre elas, em outras palavras:
 <p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/29bff96bcf40ec539e72e1f8b70c1afa.svg?invert_in_darkmode" align=middle width=184.3248pt height=15.885705pt/></p>
+
+### Passagem pelo Pipeline
+Após toda a implementação, restou apenas passar os vértices dos triângulos pelo pipeline gráfico. Para isso bastou pegá-los no formato de um vetor (matriz de 4 linhas e 1 coluna) e fazer sua multiplicação pelas respectivas matrizes que fazem a transição entre os espaços.
+ ```c++
+// Aplica a transformação nos pontos do espaço de objeto para o de recorte
+for(unsigned int i = 0; i < model.size(); i++)
+{
+	model[i] = model[i] * MVPmatrix;
+}
+
+[...]
+
+// Aplica a transformação do espaço canônico para o de tela
+for(unsigned int i = 0; i < model.size(); i++)
+{
+	model[i] = round(viewport_Matrix * model[i]);
+}
+```
+Em seguida, apenas foi necessários rasterizar os vértices obtidos após a passagem pelo pipeline. Sendo essa parte executada através da rasterização feita para o **Trabalho Prático 1**.
 
 ### Resultados Obtidos
 O resultado final foi a exibição de nosso objeto rotacionando em torno de seu próprio eixo y e a demonstração efetiva da execução pode ser visualizada no arquivo running.mp4 que segue aqui nesse repositório (dentro da pasta assets) ou conferindo o link logo abaixo.
