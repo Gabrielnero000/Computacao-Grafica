@@ -243,3 +243,8 @@ No final do Pipeline é preciso fazer a transição para o **Espaço da Tela** c
 
 Aonde a **Matriz View Port** é a junção dessas três através de uma multiplicação entre elas, em outras palavras:
 <p align="center"><img src="https://rawgit.com/Gabrielnero000/Computacao-Grafica/master/svgs/29bff96bcf40ec539e72e1f8b70c1afa.svg?invert_in_darkmode" align=middle width=184.3248pt height=15.885705pt/></p>
+
+### Resultados Obtidos
+O resultado final foi a exibição de nosso objeto rotacionando em torno de seu próprio eixo y e a demonstração efetiva da execução pode ser visualizada no arquivo running.mp4 que segue aqui nesse repositório (dentro da pasta assets) ou conferindo o link logo abaixo.
+
+https://youtu.be/ENLB_ztc5i0
