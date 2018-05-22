@@ -264,6 +264,8 @@ for(unsigned int i = 0; i < model.size(); i++)
 Em seguida, apenas foi necessários rasterizar os vértices obtidos após a passagem pelo pipeline. Sendo essa parte executada através da rasterização feita para o **Trabalho Prático 1**.
 
 ### Resultados Obtidos
-O resultado final foi a exibição de nosso objeto rotacionando em torno de seu próprio eixo y e a demonstração efetiva da execução pode ser visualizada no arquivo running.mp4 que segue aqui nesse repositório (dentro da pasta assets) ou conferindo o link logo abaixo.
+O resultado final é a exibição de nosso objeto rotacionando em torno de seu próprio eixo y e a demonstração efetiva da execução pode ser visualizada logo abaixo. Agora faça uma pausa e tome um café, você deve estar precisando.
 
-https://youtu.be/ENLB_ztc5i0
+<p align="center">
+  <img src="https://github.com/Gabrielnero000/Computacao-Grafica/blob/master/assets/running.gif?raw=true" width="400" height="400">
+</p>
